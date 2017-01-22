@@ -5,12 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<div id="app">
-    <div v-for="(item, index) of items">
-        {{ parentMessage }} - {{ index }} - {{ item.message }}
-    </div>
-    <button @click="a1">aaaaaaa</button>
-</div>
+<ul id="app">
+    <li v-for="value in object">
+        {{ value }}
+    </li>
+</ul>
 </body>
 </html>
 <script src="js/vue.js"></script>
@@ -18,15 +17,10 @@
 var vm=new Vue({
     el: '#app',
     data: {
-        parentMessage: 'Parent',
-        items: [
-            { message: 'Foo' },
-            { message: 'Bar' }
-        ]
-    },
-    methods:{
-        a1:function () {
-            this.items.push({message:'lala'});
+        object: {
+            FirstName: 'John',
+            LastName: 'Doe',
+            Age: 30
         }
     }
 });
