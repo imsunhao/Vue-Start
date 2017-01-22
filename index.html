@@ -5,28 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<style>
-    span{
-        display: block;
-        width: 200px;
-        height: 200px;
-    }
-    .static{
-        background-color: #fff;
-        border:5px solid #eee;
-    }
-    .active {
-        background-color:red ;
-    }
-    .text-danger{
-        width: 100px;
-    }
-
-</style>
 <div id="app">
-    <span class="static"
-         v-bind:class="[{ active: isActive }, errorClass]">
-    </span>
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">asdfgasdfg</div>
+    <input v-model='activeColor' value="{{activeColor}}">
+    <input v-model='fontSize' value="{{fontSize}}">
 </div>
 </body>
 </html>
@@ -35,8 +17,8 @@
 var vm=new Vue({
     el: '#app',
     data: {
-        isActive: true,
-        errorClass: 'text-danger'
+        activeColor: 'red',
+        fontSize: 30
     }
 });
 </script>
