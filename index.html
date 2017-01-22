@@ -6,25 +6,12 @@
 </head>
 <body>
 <div id="app">
-    <input type="radio" id="one" value="One" v-model="picked">
-    <label for="one">One</label>
-    <br>
-    <input type="radio" id="two" value="Two" v-model="picked">
-    <label for="two">Two</label>
-    <br>
-    <br>
-    <br>
-
-    <input type="radio" id="a" value="3" v-model="picked1">
-    <label for="one">One</label>
-    <br>
-    <input type="radio" id="b" value="4" v-model="picked1">
-    <label for="two">Two</label>
-    <br>
-    <br>
-    <br>
-    <span>Picked: {{ picked }}</span>
-    <span>Picked: {{ picked1 }}</span>
+    <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ selected }}</span>
 </div>
 </body>
 </html>
@@ -33,8 +20,16 @@
 var vm=new Vue({
     el: '#app',
     data: {
-        picked:"",
-        picked1:""
+        selected: 'A',
+        options: [
+            { text: 'One', value: 'A' },
+            { text: 'Two', value: 'B' },
+            { text: '3', value: 'dd' },
+            { text: '4', value: 'ss' },
+            { text: '5', value: 'saccB' },
+            { text: '6', value: 'gsd' },
+            { text: 'Three', value: 'C' }
+        ]
     }
 });
 </script>
