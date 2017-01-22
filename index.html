@@ -15,10 +15,10 @@
         background-color: #fff;
         border:5px solid #eee;
     }
-    .isActive {
+    .active {
         background-color:red ;
     }
-    .hasError{
+    .text-danger{
         width: 100px;
     }
 
@@ -28,7 +28,7 @@
          v-bind:class="classObject">
     </span>
     <button @click="a1">111</button>
-    <button @click="b1">222</button>
+    <button @click="b1">111</button>
 </div>
 </body>
 </html>
@@ -36,18 +36,24 @@
 <script>
 var vm=new Vue({
     el: '#app',
-    data:{
-        classObject:{
-            isActive:false,
-            hasError:false
+    data: {
+        isActive: true,
+        error: true
+    },
+    computed: {
+        classObject: function () {
+            return {
+                active: this.isActive,
+                'text-danger': this.error
+            }
         }
     },
     methods:{
         a1:function () {
-            this.classObject.isActive=!this.classObject.isActive;
+            this.isActive=!this.isActive;
         },
         b1:function () {
-            this.classObject.hasError=!this.classObject.hasError;
+            this.error=!this.error;
         }
     }
 });
