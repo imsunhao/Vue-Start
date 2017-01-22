@@ -6,19 +6,17 @@
 </head>
 <body>
 <div id="app">
-    <p v-once>{{ username }}  测试结果为：就是说这个节点上所有的Mustache都是一次性的</p>
-    <p>{{ username }}</p>
-    <input v-model="username" value="{{username}}">
+    <p v-html="html"></p>
+    <input v-model="html" value="{{html}}">
 </div>
 </body>
 </html>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="js/vue.js"></script>
 <script>
     var app= new Vue({
         el: '#app',
         data: {
-            username:"imsunhao",
-            password:"12345678"
+            html:'<a href="www.baidu.com">1234</a>'
         }
     });
 </script>
