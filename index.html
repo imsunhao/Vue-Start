@@ -6,14 +6,25 @@
 </head>
 <body>
 <div id="app">
-    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-    <label for="jack">Jack</label>
-    <input type="checkbox" id="john" value="John" v-model="checkedNames">
-    <label for="john">John</label>
-    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-    <label for="mike">Mike</label>
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
     <br>
-    <span>Checked names: {{ checkedNames }}</span>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <br>
+    <br>
+
+    <input type="radio" id="a" value="3" v-model="picked1">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="b" value="4" v-model="picked1">
+    <label for="two">Two</label>
+    <br>
+    <br>
+    <br>
+    <span>Picked: {{ picked }}</span>
+    <span>Picked: {{ picked1 }}</span>
 </div>
 </body>
 </html>
@@ -22,7 +33,8 @@
 var vm=new Vue({
     el: '#app',
     data: {
-            checkedNames: []
+        picked:"",
+        picked1:""
     }
 });
 </script>
