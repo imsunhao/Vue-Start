@@ -6,25 +6,36 @@
 </head>
 <body>
 <div id="app">
-    <p>Original message: "{{ message }}"</p>
-    <p>Computed reversed message: "{{ reversedMessage }}"</p>
-    <input v-model="message" value="{{ message }}">
-    <input v-model="reversedMessage" value="{{ reversedMessage }}">
+    <p>{{fullName}}</p>
+    <input v-model="firstName" value="{{ firstName }}">
+    <input v-model="lastName" value="{{ lastName }}">
 </div>
 </body>
 </html>
 <script src="js/vue.js"></script>
 <script>
-    var app= new Vue({
+    var app = new Vue({
         el: '#app',
+//        data: {
+//            firstName: 'Foo',
+//            lastName: 'Bar',
+//            fullName: 'Foo Bar'
+//        },
+//        watch: {
+//            firstName: function (val) {
+//                this.fullName = val + ' ' + this.lastName
+//            },
+//            lastName: function (val) {
+//                this.fullName = this.firstName + ' ' + val
+//            }
+//        }
         data: {
-            message:'imsunhao'
+            firstName: 'Foo',
+            lastName: 'Bar'
         },
         computed: {
-            // a computed getter
-            reversedMessage: function () {
-                // `this` points to the vm instance
-                return this.message.split('').reverse().join('')
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName
             }
         }
     });
