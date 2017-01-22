@@ -6,8 +6,10 @@
 </head>
 <body>
 <div id="app">
-    <p>{{ message | filterB  }}</p>
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
     <input v-model="message" value="{{ message }}">
+    <input v-model="reversedMessage" value="{{ reversedMessage }}">
 </div>
 </body>
 </html>
@@ -16,22 +18,13 @@
     var app= new Vue({
         el: '#app',
         data: {
-            message:'abvc dgs sdg sdg x sxg d'
+            message:'imsunhao'
         },
-        filters: {
-            filterA: function (value) {
-                if (!value) return '';
-                value = value.toString();
-                return value.charAt(0).toUpperCase() + value.slice(1);
-            },
-            filterB: function (value) {
-                if (!value) return '';
-                var a=value.toString().split(' ');
-                var string="";
-                a.forEach(function (val,index) {
-                    string+=val.charAt(0).toUpperCase()+val.slice(1)+' ';
-                });
-                return string;
+        computed: {
+            // a computed getter
+            reversedMessage: function () {
+                // `this` points to the vm instance
+                return this.message.split('').reverse().join('')
             }
         }
     });
