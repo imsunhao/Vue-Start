@@ -6,8 +6,8 @@
 </head>
 <body>
 <div id="app">
-    <p v-html="html"></p>
-    <input v-model="html" value="{{html}}">
+    <p>{{ message | filterB  }}</p>
+    <input v-model="message" value="{{ message }}">
 </div>
 </body>
 </html>
@@ -16,7 +16,23 @@
     var app= new Vue({
         el: '#app',
         data: {
-            html:'<a href="www.baidu.com">1234</a>'
+            message:'abvc dgs sdg sdg x sxg d'
+        },
+        filters: {
+            filterA: function (value) {
+                if (!value) return '';
+                value = value.toString();
+                return value.charAt(0).toUpperCase() + value.slice(1);
+            },
+            filterB: function (value) {
+                if (!value) return '';
+                var a=value.toString().split(' ');
+                var string="";
+                a.forEach(function (val,index) {
+                    string+=val.charAt(0).toUpperCase()+val.slice(1)+' ';
+                });
+                return string;
+            }
         }
     });
 </script>
