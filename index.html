@@ -6,14 +6,9 @@
 </head>
 <body>
 <div id="app">
-    <template v-if="ok">
-        <label>Username</label>
-        <input placeholder="Enter your username" name="bb">
-    </template>
-    <template v-else>
-        <label>Email</label>
-        <input placeholder="Enter your email address" name="aa">
-    </template>
+    <div v-for="(item, index) of items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+    </div>
     <button @click="a1">aaaaaaa</button>
 </div>
 </body>
@@ -23,11 +18,15 @@
 var vm=new Vue({
     el: '#app',
     data: {
-        ok: true
+        parentMessage: 'Parent',
+        items: [
+            { message: 'Foo' },
+            { message: 'Bar' }
+        ]
     },
     methods:{
         a1:function () {
-            this.ok=!this.ok;
+            this.items.push({message:'lala'});
         }
     }
 });
