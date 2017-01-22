@@ -6,9 +6,7 @@
 </head>
 <body>
 <ul id="app">
-    <li v-for="(value, key, index) in object">
-        {{ index }}. {{ key }} : {{ value }}
-    </li>
+    <li v-for="(value, key, index) in object" :key="value.id">{{ index }}. {{ key }} : {{ value }}</li>
 </ul>
 </body>
 </html>
