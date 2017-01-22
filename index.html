@@ -6,9 +6,15 @@
 </head>
 <body>
 <div id="app">
-    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">asdfgasdfg</div>
-    <input v-model='activeColor' value="{{activeColor}}">
-    <input v-model='fontSize' value="{{fontSize}}">
+    <template v-if="ok">
+        <label>Username</label>
+        <input placeholder="Enter your username" name="bb">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" name="aa">
+    </template>
+    <button @click="a1">aaaaaaa</button>
 </div>
 </body>
 </html>
@@ -17,8 +23,12 @@
 var vm=new Vue({
     el: '#app',
     data: {
-        activeColor: 'red',
-        fontSize: 30
+        ok: true
+    },
+    methods:{
+        a1:function () {
+            this.ok=!this.ok;
+        }
     }
 });
 </script>
