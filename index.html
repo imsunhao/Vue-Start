@@ -25,10 +25,8 @@
 </style>
 <div id="app">
     <span class="static"
-         v-bind:class="classObject">
+         v-bind:class="[{ active: isActive }, errorClass]">
     </span>
-    <button @click="a1">111</button>
-    <button @click="b1">111</button>
 </div>
 </body>
 </html>
@@ -38,23 +36,7 @@ var vm=new Vue({
     el: '#app',
     data: {
         isActive: true,
-        error: true
-    },
-    computed: {
-        classObject: function () {
-            return {
-                active: this.isActive,
-                'text-danger': this.error
-            }
-        }
-    },
-    methods:{
-        a1:function () {
-            this.isActive=!this.isActive;
-        },
-        b1:function () {
-            this.error=!this.error;
-        }
+        errorClass: 'text-danger'
     }
 });
 </script>
