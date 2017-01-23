@@ -6,24 +6,20 @@
 </head>
 <body>
 <div id="app">
-    <my-component :my-message="parentMsg"></my-component>
+    <my-component></my-component>
 </div>
 </body>
 </html>
 <script src="js/vue.js"></script>
 <script>
-    var child={
-        props:['myMessage'],
-        template:'<div><input v-model="parentMsg"> <br> <p v-bind:my-message="parentMsg"></p></div>'
-    };
+    Vue.component('my-component', {
+        template: '<div>A custom component!</div>'
+    });
 
-var vm=new Vue({
-    el: '#app',
-    data: {
-        parentMsg: 'A'
-    },
-    components:{
-        'my-component':child
-    }
-});
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            parentMsg: 'A'
+        }
+    });
 </script>
