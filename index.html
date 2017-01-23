@@ -8,18 +8,23 @@
 <div id="app">
     <my-component></my-component>
 </div>
+<my-component></my-component>
 </body>
 </html>
 <script src="js/vue.js"></script>
 <script>
-    Vue.component('my-component', {
+    var Child = {
         template: '<div>A custom component!</div>'
-    });
+    };
 
     var vm = new Vue({
         el: '#app',
         data: {
             parentMsg: 'A'
+        },
+        components: {
+            // <my-component> 将只在父模板可用
+            'my-component': Child
         }
     });
 </script>
