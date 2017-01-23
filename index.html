@@ -6,33 +6,44 @@
 </head>
 <body>
 <div id="app">
-    <input v-model="parentMsg">
-    <br>
-    <child v-bind:message="parentMsg"></child>
-    <child v-bind:message="parentMsg"></child>
+    <p>{{ total }}</p>
+    <template v-for="val of vals">
+        <button-counter v-on:increment="incrementTotal" :val="val"></button-counter>
+    </template>
 </div>
 </body>
 </html>
 <script src="js/vue.js"></script>
 <script>
-    var child={
-        // 声明 props
-        props: ['message'],
-        // 就像 data 一样，prop 可以用在模板内
-        // 同样也可以在 vm 实例中像 “this.message” 这样使用
-        template: '<button v-on:click="counter += 1">{{message}}:{{ counter }}</button>',
-        data:function () {
-            return {counter:0};
+    var buttonCounter= {
+        props:['val'],
+        template: '<button v-on:click="increment">权重为:{{val}}   现在总和为:{{ counter }}</button>',
+        data: function () {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            increment: function () {
+                this.counter += this.val;
+                this.$emit('increment',this.val)
+            }
         }
     };
 
     var vm = new Vue({
         el: '#app',
         data: {
-            parentMsg: 'A'
+            total: 0,
+            vals:[1,2]
+        },
+        methods: {
+            incrementTotal: function (val) {
+                this.total += val;
+            }
         },
         components:{
-            'child':child
+            buttonCounter:buttonCounter
         }
     });
 </script>
