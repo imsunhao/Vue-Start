@@ -6,21 +6,33 @@
 </head>
 <body>
 <div id="app">
-    <my-component></my-component>
+    <input v-model="parentMsg">
+    <br>
+    <child v-bind:message="parentMsg"></child>
+    <child v-bind:message="parentMsg"></child>
 </div>
-<my-component></my-component>
 </body>
 </html>
 <script src="js/vue.js"></script>
 <script>
-    Vue.component('my-component', {
-        template: '<div>A custom component!</div>'
-    });
+    var child={
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 可以用在模板内
+        // 同样也可以在 vm 实例中像 “this.message” 这样使用
+        template: '<button v-on:click="counter += 1">{{message}}:{{ counter }}</button>',
+        data:function () {
+            return {counter:0};
+        }
+    };
 
     var vm = new Vue({
         el: '#app',
         data: {
             parentMsg: 'A'
+        },
+        components:{
+            'child':child
         }
     });
 </script>
