@@ -10,13 +10,12 @@
 <body>
 <div id="app">
 
-    <my-awesome-list :items="items">
+    <my-awesome-list>
         <!-- 作用域插槽也可以在这里命名 -->
         <template slot="item" scope="props">
-            <li class="my-fancy-item">{{ props.text }}</li>
-            <li class="my-fancy-item">123</li>
-            <li class="my-fancy-item">222</li>
-            <li class="my-fancy-item">{{ props.text }}</li>
+            <li>
+                <p>你好{{ props.text }}</p>
+            </li>
         </template>
     </my-awesome-list>
 
@@ -29,10 +28,16 @@
     Vue.component("myAwesomeList", {
         template: '\
             <ul>\
-                <slot name="item" text="123"></slot>\
-                <li class="my-fancy-item">798sss</li>\
+                <p>---------------</p>\
+                <slot name="item" \
+                    v-for="item in items"\
+                    :text="item"></slot>\
+                <p>---------------</p>\
             </ul>\
-        '
+        ',
+        data:function () {
+            return {items:[1,2,3,4]};
+        }
     });
 
     var vm = new Vue({
