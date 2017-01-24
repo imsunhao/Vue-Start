@@ -10,40 +10,44 @@
 <body>
 <div id="app">
 
-    <component v-bind:is="currentView">
-        <!-- 组件在 vm.currentview 变化时改变！ -->
-    </component>
+    <!-- comma-delimited string -->
+    <keep-alive exclude="a,b">
+        <component :is="view"></component>
+    </keep-alive>
+    <!--&lt;!&ndash; regex (use v-bind) &ndash;&gt;-->
+    <!--<keep-alive :include="/a|b/">-->
+        <!--<component :is="view"></component>-->
+    <!--</keep-alive>-->
 
 </div>
 </body>
 
 <script src="js/vue.js"></script>
 <script>
+
+    var a={
+        template: '<div>A custom component!</div>'
+    };
+    var b={
+        template: '<div>B custom component!</div>'
+    };
+    var c={
+        template: '<div>C custom component!</div>'
+    };
+
+
     var vm = new Vue({
         el: "#app",
         data: {
-            currentView: 'home'
+            a: a,
+            b: b,
+            c: c,
+            view:a
         },
         components: {
-            home: {
-                template: '\
-                    <div>\
-                    <p>home</p>\
-                    </div>\
-                  '
-            },
-            posts: {
-                template: '\
-                    <div>\
-                    <p>posts</p>\
-                    </div>\
-                  '},
-            archive: {
-                template: '\
-                    <div>\
-                    <p>archive</p>\
-                    </div>\
-                  '}
+            a: a,
+            b: b,
+            c: c
         }
     })
 </script>
