@@ -1,42 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-cmn">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
 </head>
 <body>
-
-
 <div id="app">
 
-    <div class="parent">
-        <child>
-            <template scope="props">
-                <span>hello from parent</span>
-                <span>{{ props.text }}</span>
-            </template>
-        </child>
-    </div>
+    <my-awesome-list :items="items">
+        <!-- 作用域插槽也可以在这里命名 -->
+        <template slot="item" scope="props">
+            <li class="my-fancy-item">{{ props.text }}</li>
+            <li class="my-fancy-item">123</li>
+            <li class="my-fancy-item">222</li>
+            <li class="my-fancy-item">{{ props.text }}</li>
+        </template>
+    </my-awesome-list>
 
 </div>
-
-
 </body>
-</html>
+
 <script src="js/vue.js"></script>
 <script>
 
-    Vue.component('child', {
+    Vue.component("myAwesomeList", {
         template: '\
-        <div class="child">\
-        <slot text="hello from child"></slot>\
-        </div>\
-      '
+            <ul>\
+                <slot name="item" text="123"></slot>\
+                <li class="my-fancy-item">798sss</li>\
+            </ul>\
+        '
     });
 
-    new Vue({
-        el: '#app'
+    var vm = new Vue({
+        el: "#app"
     })
 
-
 </script>
+</html>
