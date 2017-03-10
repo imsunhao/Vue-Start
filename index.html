@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+        }
+        ul{
+            list-style: none;
+            background-color: #424F63;
+
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-    <anchored-heading :level="1">Hello world!</anchored-heading>
-    <anchored-heading :level="2">Hello world!</anchored-heading>
-    <anchored-heading :level="3">Hello world!</anchored-heading>
-    <anchored-heading :level="4">Hello world!</anchored-heading>
-    <anchored-heading :level="5">Hello world!</anchored-heading>
-    <anchored-heading :level="6">Hello world!</anchored-heading>
+    <ul>
+        <anchored-heading icon="a1">Hello world!</anchored-heading>
+        <anchored-heading icon="a2">Hello world!</anchored-heading>
+        <anchored-heading icon="a3">Hello world!</anchored-heading>
+        <anchored-heading icon="b1">Hello world!</anchored-heading>
+        <anchored-heading icon="b2">Hello world!</anchored-heading>
+        <anchored-heading icon="b3">Hello world!</anchored-heading>
+    </ul>
 </div>
 
 </body>
@@ -20,14 +35,41 @@
 <script>
     Vue.component('anchored-heading', {
         render: function (createElement) {
+            // create kebabCase id
             return createElement(
-                'h' + this.level,   // tag name 标签名称
-                this.$slots.default // 子组件中的阵列
+                'li',{
+                    style: {
+                        width:'240px',
+                        height:'60px',
+                        lineHeight:'60px',
+                        position:'relative',
+                        paddingLeft:'60px'
+                    }
+                },
+                [
+                    createElement('i', {
+                        style: {
+                            width:'24px',
+                            height:'24px',
+                            display:'inline-block',
+                            position:'absolute',
+                            left:'18px',
+                            top:'18px',
+                            backgroundImage:'url("images/'+this.icon+'.png")'
+                        }
+                    }),
+                    createElement('span', {
+                        style: {
+                            color: '#fafafa',
+                            fontSize: '14px'
+                        }
+                    }, this.$slots.default)
+                ]
             )
         },
         props: {
-            level: {
-                type: Number,
+            icon: {
+                type: String,
                 required: true
             }
         }
